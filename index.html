@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+   <title>Praças Acessíveis Em Campinas</title>
+   <style>
+       body {
+           height: 100vh;
+           margin: 0;
+       }
+   </style>
+</head>
+
+<body>
+   <script>
+       (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
+           key: "AIzaSyBDs_HoiWHEH5cYq0JYcRD8pp0-8Se_iRc",
+           v: "alpha",
+           // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+           // Add other bootstrap parameters as needed, using camel case.
+       });
+   </script>
+   <script>
+       let map3D = null;
+
+        const range = 5814650;
+        const tilt = 33;
+        const heading = 4.36;
+        const base = document.location.href.substr(0, document.location.href.lastIndexOf("/"));
+        const imgPoint = new URL(base + '/tree image.png');
+
+       const lugaresDiversos = [
+        {
+            "name": "Taquaral",
+            "camera": {
+                "center": {lat: -22.875363, lng: -47.052513, altitude: 700}
+            },
+            "point": { lat: -22.875363, lng: -47.052513, altitude: 700 },
+               "pin": {
+                   "background": 'white',
+                   "borderColor": '#03942a',
+                   "glyph": imgPoint,
+                   "scale": 1.0,
+               }
+        },
+        {
+            "name": "Mingone",
+            "camera": {
+                "center": {lat: -22.961043, lng: -47.107348, altitude: 700}
+            },
+            "point": { lat: -22.961043, lng: -47.107348, altitude: 700 },
+               "pin": {
+                   "background": 'white',
+                   "borderColor": '#03942a',
+                   "glyph": imgPoint,
+                   "scale": 1.0,
+               }
+        },
+        {
+            "name": "Pedreira do Chapadão",
+            "camera": {
+                "center": {lat: -22.891816, lng: -47.089909, altitude: 700}
+            },
+            "point": { lat: -22.891816, lng: -47.089909, altitude: 700 },
+               "pin": {
+                   "background": 'white',
+                   "borderColor": '#03942a',
+                   "glyph": imgPoint,
+                   "scale": 1.0,
+               }
+        },
+        {
+            "name": "Parque Ecológico",
+            "camera": {
+                "center": {lat: -22.902916, lng: -47.022187, altitude: 700}
+            },
+            "point": { lat: -22.902916, lng: -47.022187, altitude: 700 },
+               "pin": {
+                   "background": 'white',
+                   "borderColor": '#03942a',
+                   "glyph": imgPoint,
+                   "scale": 1.0,
+               }
+        },
+        {
+            "name": "Jequitibas",
+            "camera": {
+                "center": {lat: -22.909396, lng: -47.050794, altitude: 700}
+            },
+            "point": { lat: -22.909396, lng: -47.050794, altitude: 700 },
+               "pin": {
+                   "background": 'white',
+                   "borderColor": '#03942a',
+                   "glyph": imgPoint,
+                   "scale": 1.0,
+               }
+        }]
+
+       async function init() {
+           const { Map3DElement, MapMode, Marker3DInteractiveElement } = await google.maps.importLibrary("maps3d");
+           const { PinElement } = await google.maps.importLibrary('marker');
+
+           map3D = new Map3DElement({
+                center: { lat: -23.54, lng: -46.63, altitude: 2175.130 },
+                range: 5814650,
+                tilt: 33,
+                heading: 4.36,
+                mode: MapMode.SATELLITE,
+           });
+
+           lugaresDiversos.forEach(lugar => {
+                const marker = new Marker3DInteractiveElement({
+                position: lugar.point,
+                label: lugar.name,
+                altitudeMode: 'ABSOLUTE',
+                extruded: true,
+            });
+
+            marker.addEventListener('gmp-click', (event) => {
+                map3D.flyCameraTo({
+                    endCamera: {
+                        center: marker.position,
+                        tilt: 65,
+                        range: 500,
+                        heading: 0,
+                    },
+                    durationMillis: 12500,
+                });
+
+                map3D.addEventListener('gmp-animationend', () => {
+                    map3D.flyCameraAround({
+                            camera: {
+                                center: marker.position,
+                                tilt: 65,
+                                range: 500,
+                                heading: 0,
+                            },
+                            durationMillis: 10000,
+                            rounds: 1
+                        });
+                    }, { once: true });
+
+                event.stopPropagation();
+            });
+    
+            const markerPin = new PinElement(lugar.pin);
+            marker.append(markerPin);
+
+            map3D.append(marker);
+           })
+           
+           
+
+           document.body.append(map3D);
+       }
+       init();
+   </script>
+</body>
+
+</html>
