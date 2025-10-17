@@ -31,7 +31,7 @@
 
        const lugaresDiversos = [
         {
-            "name": "Taquaral",
+            "name": "Parque Portugal - Lagoa do Taquaral",
             "camera": {
                 "center": {lat: -22.875363, lng: -47.052513, altitude: 700}
             },
@@ -44,7 +44,7 @@
                }
         },
         {
-            "name": "Mingone",
+            "name": "Parque Linear José Mingone",
             "camera": {
                 "center": {lat: -22.961043, lng: -47.107348, altitude: 700}
             },
@@ -83,7 +83,7 @@
                }
         },
         {
-            "name": "Jequitibas",
+            "name": "Parque Bosque dos Jequitibás",
             "camera": {
                 "center": {lat: -22.909396, lng: -47.050794, altitude: 700}
             },
@@ -94,7 +94,74 @@
                    "glyph": imgPoint,
                    "scale": 1.0,
                }
-        }]
+               
+        },
+        {
+            "name": "Parque das Aguas",
+            "camera": {
+                "center": {lat: -22.954759, lng: -47.054138, altitude: 700}
+            },
+            "point": { lat: -22.954759, lng: -47.054138, altitude: 700 },
+               "pin": {
+                   "background": 'white',
+                   "borderColor": '#03942a',
+                   "glyph": imgPoint,
+                   "scale": 1.0,
+               }
+        },
+        {
+            "name": "Parque Municipal Luciano do Valle",
+            "camera": {
+                "center": {lat: -22.933603, lng: -47.122648, altitude: 700}
+            },
+            "point": { lat: -22.933603, lng: -47.122648, altitude: 700 },
+               "pin": {
+                   "background": 'white',
+                   "borderColor": '#03942a',
+                   "glyph": imgPoint,
+                   "scale": 1.0,
+               }
+        },
+        {
+            "name": "Bosque Chico Mendes",
+            "camera": {
+                "center": {lat: -22.856137, lng: -47.033055, altitude: 700}
+            },
+            "point": { lat: -22.856137, lng: -47.033055, altitude: 700 },
+               "pin": {
+                   "background": 'white',
+                   "borderColor": '#03942a',
+                   "glyph": imgPoint,
+                   "scale": 1.0,
+               }
+        },
+        {
+            "name": "Bosque dos Guarantãs",
+            "camera": {
+                "center": {lat: -22.935495, lng: -47.060899, altitude: 900}
+            },
+            "point": { lat: -22.935495, lng: -47.060899, altitude: 900 },
+               "pin": {
+                   "background": 'white',
+                   "borderColor": '#03942a',
+                   "glyph": imgPoint,
+                   "scale": 1.0,
+               }
+        },
+        {
+            "name": "Bosque São José",
+            "camera": {
+                "center": {lat: -22.921885, lng: -47.046462, altitude: 700}
+            },
+            "point": { lat: -22.921885, lng: -47.046462, altitude: 700 },
+               "pin": {
+                   "background": 'white',
+                   "borderColor": '#03942a',
+                   "glyph": imgPoint,
+                   "scale": 1.0,
+               }
+        },
+        ]
 
        async function init() {
            const { Map3DElement, MapMode, Marker3DInteractiveElement } = await google.maps.importLibrary("maps3d");
