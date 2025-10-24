@@ -191,38 +191,40 @@
             extruded: true,
         });
 
-        marker.addEventListener('gmp-click', (event) => {
-            map3D.flyCameraTo({
-                endCamera: {
-                    center: marker.position,
-                    tilt: 65,
-                    range: 500,
-                    heading: 0,
-                },
-                durationMillis: 12500,
+            marker.addEventListener('gmp-click', (event) => {
+                map3D.flyCameraTo({
+                    endCamera: {
+                        center: marker.position,
+                        tilt: 65,
+                        range: 500,
+                        heading: 0,
+                    },
+                    durationMillis: 12500,
+                });
+
+                alert(`Você clicou na praça "${lugar.name}"`);
+
+                map3D.addEventListener('gmp-animationend', () => {
+                    map3D.flyCameraAround({
+                            camera: {
+                                center: marker.position,
+                                tilt: 65,
+                                range: 500,
+                                heading: 0,
+                            },
+                            durationMillis: 10000,
+                            rounds: 1
+                        });
+                    }, { once: true });
+
+                    setTimeout(()=> {
+                        if(lugar.url){
+                            window.open(lugar.url, "_blank");
+                        }
+                    }, 10000)
+
+                event.stopPropagation();
             });
-
-            map3D.addEventListener('gmp-animationend', () => {
-                map3D.flyCameraAround({
-                        camera: {
-                            center: marker.position,
-                            tilt: 65,
-                            range: 500,
-                            heading: 0,
-                        },
-                        durationMillis: 10000,
-                        rounds: 1
-                    });
-                }, { once: true });
-
-                setTimeout(()=> {
-                    if(lugar.url){
-                        window.open(lugar.url, "_blank");
-                    }
-                }, 10000)
-
-            event.stopPropagation();
-        });
 
         const markerPin = new PinElement(lugar.pin);
         marker.append(markerPin);
