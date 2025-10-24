@@ -1,243 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-   <title>Praças Acessíveis Em Campinas</title>
-   <style>
-       body {
-           height: 100vh;
-           margin: 0;
-       }
-   </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Green Maps</title>
 </head>
+<body>
+    <main>
 
-<script>
-    (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
-        key: "AIzaSyBDs_HoiWHEH5cYq0JYcRD8pp0-8Se_iRc",
-        v: "alpha",
-        // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
-        // Add other bootstrap parameters as needed, using camel case.
-    });
-</script>
-<script>
-    let map3D = null;
+        <section class="intro-section">
 
-    const range = 5814650;
-    const tilt = 33;
-    const heading = 4.36;
-    const base = document.location.href.substr(0, document.location.href.lastIndexOf("/"));
-    const imgPoint = new URL(base + '/tree image.png');
+            <div class="intro-title">
+                <div class="opac">
+                    <div class="overflow"></div>
+                    <img src="floresta-blur.png" alt="Imagem de floresta">
+                </div>
+                <h1>Green Maps</h1>
+            </div>
+        </section>
 
-    const lugaresDiversos = [
-    {
-        "name": "Parque Portugal - Lagoa do Taquaral",
-        "camera": {
-            "center": {lat: -22.875363, lng: -47.052513, altitude: 700}
-        },
-        "point": { lat: -22.875363, lng: -47.052513, altitude: 700 },
-        "pin": {
-            "background": 'white',
-            "borderColor": '#03942a',
-            "glyph": imgPoint,
-            "scale": 1.0,
-        },
-        "url": "https://www.google.com/maps/place/Parque+Portugal+-+Lagoa+do+Taquaral/@-22.8752757,-47.0913854,13z/data=!4m10!1m3!2m2!1sparque!6e1!3m5!1s0x94c8c5e383bba855:0x2037c7ffd1092203!8m2!3d-22.8752743!4d-47.0521916!16s%2Fm%2F02wvq06?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D"
-    },
-    {
-        "name": "Parque Linear José Mingone",
-        "camera": {
-            "center": {lat: -22.961043, lng: -47.107348, altitude: 700}
-        },
-        "point": { lat: -22.961043, lng: -47.107348, altitude: 700 },
-        "pin": {
-            "background": 'white',
-            "borderColor": '#03942a',
-            "glyph": imgPoint,
-            "scale": 1.0,
-        },
-        "url": "https://google.com/maps/place/Parque+Linear+José+Mingone/@-22.9545306,-47.1096268,13z/data=!4m11!1m3!2m2!1sparque!6e1!3m6!1s0x94c8c9a2d42b051f:0x9db24ca9c96cde06!8m2!3d-22.9609285!4d-47.1071917!15sCgZwYXJxdWVaCCIGcGFycXVlkgEJY2l0eV9wYXJrmgEjQ2haRFNVaE5NRzluUzBWSlEwRm5TVVJQTFdGMVUxcFJFQUWqAToQASoKIgZwYXJxdWUoDDIeEAEiGgg1s_mBrtrLw8z295GIFkGq5J9f1QPlbkTkMgoQAiIGcGFycXVl4AEA-gEECAAQQQ!16s%2Fg%2F11bbrj_pj0?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D"
-    },
-    {
-        "name": "Pedreira do Chapadão",
-        "camera": {
-            "center": {lat: -22.891816, lng: -47.089909, altitude: 700}
-        },
-        "point": { lat: -22.891816, lng: -47.089909, altitude: 700 },
-        "pin": {
-            "background": 'white',
-            "borderColor": '#03942a',
-            "glyph": imgPoint,
-            "scale": 1.0,
-        },
-        "url": "https://google.com/maps/place/Pedreira+do+Chapadão/@-22.9467587,-47.1131275,12.75z/data=!4m11!1m3!2m2!1sparque!6e1!3m6!1s0x94c8c62fcba1c0c7:0x6155fe8625597f99!8m2!3d-22.8917367!4d-47.0900482!15sCgZwYXJxdWVaCCIGcGFycXVlkgEEcGFya5oBJENoZERTVWhOTUc5blMwVkpRMEZuU1VOdGJXRTJSbTlSUlJBQqoBOhABKgoiBnBhcnF1ZSgMMh4QASIaCDWz-YGu2svDzPb3kYgWQarkn1_VA-VuROQyChACIgZwYXJxdWXgAQD6AQQIABA5!16s%2Fg%2F11b6j7nbds?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D"
-    },
-    {
-        "name": "Parque Ecológico",
-        "camera": {
-            "center": {lat: -22.902916, lng: -47.022187, altitude: 700}
-        },
-        "point": { lat: -22.902916, lng: -47.022187, altitude: 700 },
-        "pin": {
-            "background": 'white',
-            "borderColor": '#03942a',
-            "glyph": imgPoint,
-            "scale": 1.0,
-        },
-        "url": "https://www.google.com/maps/place/Parque+Ecol%C3%B3gico,+Campinas+-+SP/@-22.9098432,-47.018148,15z/data=!3m1!4b1!4m10!1m3!2m2!1sparque!6e1!3m5!1s0x94c8cfa98aa9b3a7:0x915bbcf86a4097d7!8m2!3d-22.9076824!4d-47.0175684!16s%2Fg%2F1ymw23x8n?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D"
-    },
-    {
-        "name": "Parque Bosque dos Jequitibás",
-        "camera": {
-            "center": {lat: -22.909396, lng: -47.050794, altitude: 700}
-        },
-        "point": { lat: -22.909396, lng: -47.050794, altitude: 700 },
-        "pin": {
-            "background": 'white',
-            "borderColor": '#03942a',
-            "glyph": imgPoint,
-            "scale": 1.0,
-        },
-        "url": "https://www.google.com/maps/place/Parque+Bosque+dos+Jequitib%C3%A1s/@-22.9093173,-47.0673579,15z/data=!4m11!1m3!2m2!1sparque!6e1!3m6!1s0x94c8cf377761229b:0xcc1cb50b4c82526d!8m2!3d-22.9093173!4d-47.0508784!15sCgZwYXJxdWVaCCIGcGFycXVlkgEEcGFya5oBJENoZERTVWhOTUc5blMwVkpRMEZuU1VSMmRGbFFTR3huUlJBQqoBOhABKgoiBnBhcnF1ZSgMMh4QASIaCDWz-YGu2svDzPb3kYgWQarkn1_VA-VuROQyChACIgZwYXJxdWXgAQD6AQQIABA5!16s%2Fg%2F122047zn?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D"   
-    },
-    {
-        "name": "Parque das Aguas",
-        "camera": {
-            "center": {lat: -22.954759, lng: -47.054138, altitude: 700}
-        },
-        "point": { lat: -22.954759, lng: -47.054138, altitude: 700 },
-        "pin": {
-            "background": 'white',
-            "borderColor": '#03942a',
-            "glyph": imgPoint,
-            "scale": 1.0,
-        },
-        "url": "https://google.com/maps/place/Parque+das+Águas/@-22.9202272,-47.0913152,13.25z/data=!4m11!1m3!2m2!1sparque!6e1!3m6!1s0x94c8ceae24257a37:0x1ea9b1c132594cb2!8m2!3d-22.9545258!4d-47.0541963!15sCgZwYXJxdWVaCCIGcGFycXVlkgEEcGFya5oBI0NoWkRTVWhOTUc5blMwVkpRMEZuU1VSdGJuTlFMVnAzRUFFqgE6EAEqCiIGcGFycXVlKAwyHhABIhoINbP5ga7ay8PM9veRiBZBquSfX9UD5W5E5DIKEAIiBnBhcnF1ZeABAPoBBAgAEEg!16s%2Fg%2F11gbld_4j_?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D"
-    },
-    {
-        "name": "Parque Municipal Luciano do Valle",
-        "camera": {
-            "center": {lat: -22.933603, lng: -47.122648, altitude: 700}
-        },
-        "point": { lat: -22.933603, lng: -47.122648, altitude: 700 },
-        "pin": {
-            "background": 'white',
-            "borderColor": '#03942a',
-            "glyph": imgPoint,
-            "scale": 1.0,
-        },
-        "url": "https://www.google.com/maps/place/Parque+Municipal+Luciano+do+Valle/@-22.9352646,-47.1728647,13z/data=!4m11!1m3!2m2!1sparque!6e1!3m6!1s0x94c8c83c38dc9891:0x9c42fae0bd2fcdad!8m2!3d-22.9352631!4d-47.1220352!15sCgZwYXJxdWVaCCIGcGFycXVlkgEEcGFya5oBI0NoWkRTVWhOTUc5blMwVkpRMEZuU1VOUWMwbGZibVYzRUFFqgE6EAEqCiIGcGFycXVlKAwyHhABIhoINbP5ga7ay8PM9veRiBZBquSfX9UD5W5E5DIKEAIiBnBhcnF1ZeABAPoBBAgAECs!16s%2Fg%2F1q62bkwf6?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D"
-    },
-    {
-        "name": "Bosque Chico Mendes",
-        "camera": {
-            "center": {lat: -22.856137, lng: -47.033055, altitude: 700}
-        },
-        "point": { lat: -22.856137, lng: -47.033055, altitude: 700 },
-        "pin": {
-            "background": 'white',
-            "borderColor": '#03942a',
-            "glyph": imgPoint,
-            "scale": 1.0,
-        },
-        "url": "https://www.google.com/maps/place/Bosque+Chico+Mendes/@-22.8547129,-47.1629497,12z/data=!4m10!1m2!2m1!1schico+mendes!3m6!1s0x94c8c5bbe8b21f35:0x5bd54f836672e9cc!8m2!3d-22.8547129!4d-47.0311138!15sCgxjaGljbyBtZW5kZXOSAQRwYXJrqgFHEAEqECIMY2hpY28gbWVuZGVzKAwyHxABIhsY1B_pNLmBSNG97KnccNL3ReR8zt_6jXF7eaAyEBACIgxjaGljbyBtZW5kZXPgAQA!16s%2Fg%2F1ptwm91q7?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D"
-    },
-    {
-        "name": "Bosque dos Guarantãs",
-        "camera": {
-            "center": {lat: -22.935495, lng: -47.060899, altitude: 900}
-        },
-        "point": { lat: -22.935495, lng: -47.060899, altitude: 900 },
-        "pin": {
-            "background": 'white',
-            "borderColor": '#03942a',
-            "glyph": imgPoint,
-            "scale": 1.0,
-        },
-        "url": "https://google.com/maps/place/Bosque+dos+Guarantãs/@-22.9280515,-47.1099057,13z/data=!4m11!1m3!2m2!1sparque!6e1!3m6!1s0x94c8c92c5d47e327:0x7e20c860737e0f5d!8m2!3d-22.9354073!4d-47.0608441!15sCgZwYXJxdWVaCCIGcGFycXVlkgEEcGFya5oBJENoZERTVWhOTUc5blMwVkpRMEZuU1VNdGVuTjJMWGwzUlJBQqoBOhABKgoiBnBhcnF1ZSgMMh4QASIaCDWz-YGu2svDzPb3kYgWQarkn1_VA-VuROQyChACIgZwYXJxdWXgAQD6AQUIrQEQRg!16s%2Fg%2F1pzprzpbm?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D"
-    },
-    {
-        "name": "Bosque São José",
-        "camera": {
-            "center": {lat: -22.921885, lng: -47.046462, altitude: 700}
-        },
-        "point": { lat: -22.921885, lng: -47.046462, altitude: 700 },
-        "pin": {
-            "background": 'white',
-            "borderColor": '#03942a',
-            "glyph": imgPoint,
-            "scale": 1.0,
-        },
-        "url": "https://www.google.com/maps/place/Bosque+S%C3%A3o+Jos%C3%A9/@-22.9223796,-47.1122718,13z/data=!4m11!1m3!2m2!1sparque!6e1!3m6!1s0x94c8cf27a65cd3a3:0x51bf95a015788cf6!8m2!3d-22.9223767!4d-47.0463562!15sCgZwYXJxdWVaCCIGcGFycXVlkgEEcGFya5oBI0NoWkRTVWhOTUc5blMwVkpRMEZuU1VObmIwMVFkVlpSRUFFqgE6EAEqCiIGcGFycXVlKAwyHhABIhoINbP5ga7ay8PM9veRiBZBquSfX9UD5W5E5DIKEAIiBnBhcnF1ZeABAPoBBAgAED0!16s%2Fg%2F11cjp7_ptz?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D"
-    },
-    ]
+        <section class="home">
+            <div class="home-content">
+                <div class="intro-info">
+                    <h2>O QUE É?</h2>
+                    <p>O Green Maps é uma ferramenta digital inovadora, 
+                        criada para facilitar o acesso a áreas verdes e 
+                        praças em Campinas. Nossa plataforma utiliza a 
+                        tecnologia do Google Earth para ajudar pessoas 
+                        com deficiências físicas e cognitivas a descobrirem
+                            e explorarem os espaços públicos da cidade de 
+                            maneira acessível e interativa.
+                        Acreditamos que todos merecem a oportunidade de se conectar 
+                        com a natureza e aproveitar os benefícios das áreas verdes, 
+                        sem obstáculos ou dificuldades. Com o Green Maps, a 
+                        experiência de visitar esses locais fica mais fácil, 
+                        agradável e personalizada.</p>
+                </div>
+                <img src="arvore-container.png" alt="Árvore no meio do container" class="tree-container">
+                <div class="about-content">
+                    <h2>Quem Somos Nós?</h2>
+                    <p>Somos uma equipe de profissionais apaixonados por acessibilidade 
+                        e pela criação de soluções tecnológicas que impactam 
+                        positivamente a vida das pessoas. Nosso projeto nasceu 
+                        da vontade de oferecer uma ferramenta simples, prática e 
+                        eficiente para ajudar a promover a inclusão e o bem-estar 
+                        de todos. Nosso trabalho é fundamentado no compromisso com a
+                        inovação, com a acessibilidade e com o respeito às 
+                        necessidades de cada indivíduo. Acreditamos que, 
+                        através da união da tecnologia com a conscientização sobre
+                        acessibilidade, podemos fazer a diferença na vida de muitas
+                        pessoas.</p>
+                </div>
+            </div>
 
-    async function init() {
-        const { Map3DElement, MapMode, Marker3DInteractiveElement } = await google.maps.importLibrary("maps3d");
-        const { PinElement } = await google.maps.importLibrary('marker');
+        </section>
 
-        map3D = new Map3DElement({
-            center: { lat: -23.54, lng: -46.63, altitude: 2175.130 },
-            range: 5814650,
-            tilt: 33,
-            heading: 4.36,
-            mode: MapMode.SATELLITE,
-        });
+        <section class="about">
+            
+        </section>
 
-        lugaresDiversos.forEach(lugar => {
-            const marker = new Marker3DInteractiveElement({
-            position: lugar.point,
-            label: lugar.name,
-            altitudeMode: 'ABSOLUTE',
-            extruded: true,
-        });
+        <section class="work">
+            <h2>Como Funciona?</h2>
+            <p>O Green Maps utiliza a API do Google Earth para marcar 
+                pontos estratégicos em Campinas, como praças e áreas 
+                verdes, em um mapa interativo. Veja como é fácil:</p>
+            
+            <div class="card-container">
+                <div class="card-single">
+                    <h4>1</h4>
+                    <p>Navegue pelo Mapa: Ao acessar nossa plataforma, 
+                        você verá um mapa de Campinas com pontos de interesse, 
+                        como praças, parques e outros locais de lazer.</p>
+                </div>
+                <div class="card-single">
+                    <h4>2</h4>
+                    <p>Clique no Ponto de Interesse: Ao clicar em um ponto no mapa, 
+                        o local recebe um zoom automático para que você tenha uma visão 
+                        detalhada do espaço.</p>
+                </div>
+                <div class="card-single">
+                    <h4>3</h4>
+                    <p>Visualização de 360°: O mapa gira para fornecer uma visão geral 
+                        do local, permitindo que você tenha uma ideia clara de como é 
+                        o ambiente e sua acessibilidade.</p>
+                </div>
+                <div class="card-single">
+                    <h4>4</h4>
+                    <p>Redirecionamento ao Google Maps: Após 10 segundos de visualização, 
+                        o usuário será automaticamente redirecionado ao Google Maps, onde 
+                        poderá obter direções precisas e todas as informações adicionais 
+                        sobre o trajeto até o local.</p>
+                </div>
+            </div>
 
-        marker.addEventListener('gmp-click', (event) => {
-            map3D.flyCameraTo({
-                endCamera: {
-                    center: marker.position,
-                    tilt: 65,
-                    range: 500,
-                    heading: 0,
-                },
-                durationMillis: 12500,
-            });
+            <h3>ACESSE O MAPA DE PRAÇAS</h3>
+            <!-- <a href="green-maps.html">
+                <img src="acesso.png" alt="">
+            </a> -->
 
-            map3D.addEventListener('gmp-animationend', () => {
-                map3D.flyCameraAround({
-                        camera: {
-                            center: marker.position,
-                            tilt: 65,
-                            range: 500,
-                            heading: 0,
-                        },
-                        durationMillis: 10000,
-                        rounds: 1
-                    });
-                }, { once: true });
-
-                setTimeout(()=> {
-                    if(lugar.url){
-                        window.open(lugar.url, "_blank");
-                    }
-                }, 10000)
-
-            event.stopPropagation();
-        });
-
-        const markerPin = new PinElement(lugar.pin);
-        marker.append(markerPin);
-
-        map3D.append(marker);
-        })
-        
-        
-
-        document.body.append(map3D);
-    }
-    init();
-
-    
-</script>
-
-
+        </section>
+    </main>
+</body>
 </html>
